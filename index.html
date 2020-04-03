@@ -13,21 +13,33 @@
     </head>
     <body>
         <div class="calendario">
-            <h1><span id="mese"></span> <span id="anno"><span></h1>
-            <div class="mese-attuale">
+            <header>        <!-- HEADER -->
                 <button class="button mese-precedente"><< Mese Precedente</button>
+                <h1><span id="mese"></span> <span id="anno"><span></h1>
                 <button class="button mese-successivo">Mese Successivo >></button>
-            </div>
-            <div class="lista-giorni-mese">
-                <ul id="giorni-mese">
+            </header>
+            <div class="grid-calendario">       <!-- GRIGLIA CALENDARIO -->
+                <div class="riga-giorni-settimana">
+                    <div class="giorno-settimana">Luned&igrave</div>
+                    <div class="giorno-settimana">Marted&igrave</div>
+                    <div class="giorno-settimana">Mercoled&igrave</div>
+                    <div class="giorno-settimana">Gioved&igrave</div>
+                    <div class="giorno-settimana">Venerd&igrave</div>
+                    <div class="giorno-settimana">Sabato</div>
+                    <div class="giorno-settimana">Domenica</div>
+                </div>
+                <div class="giorni-mese">   <!-- QUA DENTRO VENGONO POSIZIONATI I GIORNI DEL MESE GRAZIE A HANDLEBARS -->
 
-                </ul>
+                </div>
             </div>
         </div>
 
 
-        <script id="calendar-template" type="text/x-handlebars-template">
-            <li data-giorno="{{dataGiorno}}">{{giorno}}</li>
+        <script id="calendar-template" type="text/x-handlebars-template">   <!-- TEMPLATE HANDLEBARS PER POPOLARE LA GRIGLIA CON I GIORNI DEL MESE -->
+            <div data-giorno="{{dataGiorno}}" class="giorno">
+                <span class="numero-giorno">{{giorno}}</span>
+                <span class="testo-numero-giorno"></span>
+            </div>
         </script>
 
         <script src="js/main.js" charset="utf-8"></script>

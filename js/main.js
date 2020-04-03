@@ -27,23 +27,65 @@ $(document).ready(function() {
 
 
 
+    function aggiuntaSpaziGrigliaSettimana(meseDaStampare) {        // questa funzione prende il giorno della settimana del primo giorno del mese (meseDaStampare) e crea degli spazi vuoti nella griglia in base al giorno della settimana (es. Domenica uguale 6 spazi vuoti dal Lunedi' al Sabato)
+        var weekDay1stMonth = meseDaStampare.startOf('month').weekday();
+        var divVuoto = '<div class="giorno"></div>';
+        switch (weekDay1stMonth) {
+            case 1:
+                $('.giorni-mese').append(divVuoto);
+                break;
+            case 2:
+                for (var i = 1; i <= 2; i++) {
+                    $('.giorni-mese').append(divVuoto);
+                }
+                break;
+            case 3:
+                for (var i = 1; i <= 3; i++) {
+                    $('.giorni-mese').append(divVuoto);
+                }
+                break;
+            case 4:
+                for (var i = 1; i <= 4; i++) {
+                    $('.giorni-mese').append(divVuoto);
+                }
+                break;
+            case 5:
+                for (var i = 1; i <= 5; i++) {
+                    $('.giorni-mese').append(divVuoto);
+                }
+                break;
+            case 6:
+                for (var i = 1; i <= 6; i++) {
+                    $('.giorni-mese').append(divVuoto);
+                }
+                break;
+        }
+    }
+
+
     function stampoGiorniMese(meseDaStampare) {         // questa funzione prende dalla variabile meseDaStampare il mese, vede quanti giorni ci sono e stampa a schermo tutti i giorni (handlebars)
-        $('#giorni-mese').empty();
+        $('.giorni-mese').empty();
         var giorniMese = meseDaStampare.daysInMonth();
         var giornoX = meseDaStampare.clone();
         var meseAttuale = giornoX.format('MMMM');
         var annoAttuale = giornoX.format('YYYY');
         $('#mese').text(meseAttuale);
         $('#anno').text(annoAttuale);
+        aggiuntaSpaziGrigliaSettimana(meseDaStampare);
 
         for (var i = 1; i <= giorniMese; i++) {
+            // var giornoDaInserire = {
+            //     giorno: i + ' ' + meseAttuale,
+            //     dataGiorno: giornoX.format('YYYY-MM-DD')
+            // }
             var giornoDaInserire = {
-                giorno: i + ' ' + meseAttuale,
+                giorno: i,
                 dataGiorno: giornoX.format('YYYY-MM-DD')
             }
 
             var templateFinale = templateGiorno(giornoDaInserire); // Stiamo popolando il template con i dati dell'oggetto
-            $('#giorni-mese').append(templateFinale);
+            // $('#giorni-mese').append(templateFinale);
+            $('.giorni-mese').append(templateFinale);
             giornoX.add(1, 'day');
         }
     }
@@ -65,7 +107,8 @@ $(document).ready(function() {
                     var giornoFestivo = giorniFestivi[i];
                     var nomeGiornoFestivo = giornoFestivo.name;
                     var dataFestivo = giornoFestivo.date;
-                    $('#giorni-mese li[data-giorno="' + dataFestivo + '"]').addClass('festivo').append(' - ' + nomeGiornoFestivo);
+                    // $('#giorni-mese li[data-giorno="' + dataFestivo + '"]').addClass('festivo').append(' - ' + nomeGiornoFestivo);
+                    $('.giorno[data-giorno="' + dataFestivo + '"]').addClass('festivo').find('.testo-numero-giorno').text(' - ' + nomeGiornoFestivo);
                 }
             }
         });

@@ -1,3 +1,13 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.festivo {
+    color: red;
+}
+
 .calendario {
     display: flex;
     flex-direction: column;
@@ -5,10 +15,64 @@
     align-items: center;
 }
 
-#mese, li {
-    text-transform: capitalize;
+/* HEADER */
+header {
+    padding: 50px 0;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
 }
 
-.festivo {
-    color: red;
+header button {
+    font-size: 18px;
+    padding: 15px 10px;
+    margin: 0 100px;
 }
+
+header h1 {
+    font-size: 70px;
+}
+
+#mese {
+    text-transform: capitalize;
+}
+/* FINE HEADER */
+
+
+/* GRIGLIA */
+.riga-giorni-settimana, .giorni-mese {
+    display: flex;
+}
+
+.giorni-mese {
+    flex-wrap: wrap;
+    max-width: 80vw;
+}
+
+.giorno-settimana {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: calc(80vw / 7);
+    height: 50px;
+    font-size: 26px;
+    font-weight: bold;
+    border: 1px solid black;
+}
+
+.giorno {
+    padding: 5px;
+    width: calc(80vw / 7);
+    height: calc(80vw / 12);
+    border: 1px solid black;
+}
+
+.numero-giorno {
+    font-size: 26px;
+    font-weight: bold;
+}
+
+.testo-numero-giorno {
+    font-size: 20px;
+}
+/* FINE GRIGlIA */
