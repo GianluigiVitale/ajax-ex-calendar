@@ -12,7 +12,23 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.4/handlebars.min.js" charset="utf-8"></script>
     </head>
     <body>
+        <div class="calendario">
+            <h1><span id="mese"></span> 2018</h1>
+            <div class="mese-attuale">
+                <button class="button mese-precedente"><< Mese Precedente</button>
+                <button class="button mese-successivo">Mese Successivo >></button>
+            </div>
+            <div class="lista-giorni-mese">
+                <ul id="giorni-mese">
 
+                </ul>
+            </div>
+        </div>
+
+
+        <script id="calendar-template" type="text/x-handlebars-template">
+            <li>{{giorno}}</li>
+        </script>
 
         <script src="js/main.js" charset="utf-8"></script>
     </body>

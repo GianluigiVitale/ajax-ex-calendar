@@ -1,1 +1,10 @@
+.calendario {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 
+#mese, li {
+    text-transform: capitalize;
+}
