@@ -27,6 +27,28 @@ $(document).ready(function() {
 
 
 
+    function stampoGiorniMese(meseDaStampare) {         // questa funzione prende dalla variabile meseDaStampare il mese, vede quanti giorni ci sono e stampa a schermo tutti i giorni (handlebars)
+        $('#giorni-mese').empty();
+        var giorniMese = meseDaStampare.daysInMonth();
+        var giornoX = meseDaStampare.clone();
+        var meseAttuale = giornoX.format('MMMM');
+        var annoAttuale = giornoX.format('YYYY');
+        $('#mese').text(meseAttuale);
+        $('#anno').text(annoAttuale);
+
+        for (var i = 1; i <= giorniMese; i++) {
+            var giornoDaInserire = {
+                giorno: i + ' ' + meseAttuale,
+                dataGiorno: giornoX.format('YYYY-MM-DD')
+            }
+
+            var templateFinale = templateGiorno(giornoDaInserire); // Stiamo popolando il template con i dati dell'oggetto
+            $('#giorni-mese').append(templateFinale);
+            giornoX.add(1, 'day');
+        }
+    }
+
+
     function stampaFestivi(meseDaStampare) {    // questa funzione fa una chiamata AJAX a un API e se c'e' una vacanza in un giorno cambia il colore di quel giorno e dice quale e' la vacanza
         var giornoX = meseDaStampare.clone();
         var meseAttuale = giornoX.month();
@@ -50,33 +72,11 @@ $(document).ready(function() {
     }
 
 
-    function stampoGiorniMese(meseDaStampare) {         // questa funzione prende dalla variabile meseDaStampare il mese, vede quanti giorni ci sono e stampa a schermo tutti i giorni (handlebars)
-        $('#giorni-mese').empty();
-        var giorniMese = meseDaStampare.daysInMonth();
-        var giornoX = meseDaStampare.clone();
-        var meseAttuale = giornoX.format('MMMM');
-        var annoAttuale = giornoX.format('YYYY');
-        $('#mese').text(meseAttuale);
-        $('#anno').text(annoAttuale);
-
-        for (var i = 1; i <= giorniMese; i++) {
-            var giornoDaInserire = {
-                giorno: i + ' ' + meseAttuale,
-                dataGiorno: giornoX.format('YYYY-MM-DD')
-            }
-
-            var templateFinale = templateGiorno(giornoDaInserire); // Stiamo popolando il template con i dati dell'oggetto
-            $('#giorni-mese').append(templateFinale);
-            giornoX.add(1, 'day');
-        }
-    }
-
-
     function controlloMeseNext(meseDaStampare) {        // questa funzione fa si che si ci muova sempre tra il range gennaio 2018 e dicembre 2018 se il mese e' dicembre torna a gennaio
         var giornoX = meseDaStampare.clone();
         var meseAttuale = giornoX.format('MMMM');
         if (meseAttuale == 'dicembre') {
-            dataIniziale.subtract(11, 'month');
+            alert('Anno 2019 e successivi non disponibili');
         } else {
             dataIniziale.add(1, 'month');
         }
@@ -87,10 +87,11 @@ $(document).ready(function() {
         var giornoX = meseDaStampare.clone();
         var meseAttuale = giornoX.format('MMMM');
         if (meseAttuale == 'gennaio') {
-            dataIniziale.add(11, 'month');
+            alert('Anno 2017 e precedenti non disponibili');
         } else {
             dataIniziale.subtract(1, 'month');
         }
     }
+
 
 });
