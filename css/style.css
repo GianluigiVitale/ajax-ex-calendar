@@ -8,3 +8,7 @@
 #mese, li {
     text-transform: capitalize;
 }
+
+.festivo {
+    color: red;
+}
