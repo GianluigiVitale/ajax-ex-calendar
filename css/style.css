@@ -4,6 +4,10 @@
     box-sizing: border-box;
 }
 
+.hidden, #hidden {
+    display: none;
+}
+
 .festivo {
     color: red;
 }
@@ -18,9 +22,9 @@
 /* HEADER */
 header {
     padding: 50px 0;
-    width: 100vw;
     display: flex;
     justify-content: center;
+    align-items: center;
 }
 
 header button {
@@ -76,3 +80,118 @@ header h1 {
     font-size: 20px;
 }
 /* FINE GRIGlIA */
+
+
+/* MEDIA QUERY */
+
+@media screen and (max-width: 1200px) {
+
+    header h1 {
+        font-size: 45px;
+    }
+
+    header button {
+        font-size: 22px;
+        margin: 0 35px;
+        padding: 10px 15px;
+    }
+}
+
+
+@media screen and (max-width: 992px) {
+
+    .hidden, #hidden {
+        display: flex;
+    }
+
+    .active {
+        display: none;
+    }
+
+    header h1 {
+        font-size: 40px;
+    }
+
+    header button {
+        margin: 0 25px;
+    }
+
+    .giorno-settimana {
+        font-size: 35px;
+        height: 65px;
+    }
+
+    .giorno {
+        height: calc(80vw / 8);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .numero-giorno {
+        font-size: 30px;
+    }
+
+    .testo-numero-giorno {
+        display: none;
+    }
+}
+
+
+@media screen and (max-width: 768px) {
+
+    header h1 {
+        font-size: 30px;
+    }
+
+    header button {
+        font-size: 22px;
+        padding: 15px 25px;
+    }
+
+    .giorno-settimana {
+        width: calc(90vw / 7);
+        font-size: 30px;
+    }
+
+    .giorni-mese {
+        max-width: 90vw;
+    }
+
+    .giorno {
+        width: calc(90vw / 7);
+    }
+
+    .numero-giorno {
+        font-size: 28px;
+    }
+}
+
+
+@media screen and (max-width: 576px) {
+
+    header h1 {
+        font-size: 20px;
+    }
+
+    header button {
+        font-size: 14px;
+        margin: 0 15px;
+        padding: 10px 7px;
+    }
+
+    .giorno-settimana {
+        font-size: 20px;
+    }
+
+    .numero-giorno {
+        font-size: 18px;
+    }
+}
+
+
+
+
+
+
+/*  */

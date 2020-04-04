@@ -14,12 +14,18 @@
     <body>
         <div class="calendario">
             <header>        <!-- HEADER -->
-                <button class="button mese-precedente"><< Mese Precedente</button>
+                <div class="btn">
+                    <button class="button mese-precedente active"><< Mese Precedente</button>
+                    <button class="button mese-precedente hidden"><< Mese</button>
+                </div>
                 <h1><span id="mese"></span> <span id="anno"><span></h1>
-                <button class="button mese-successivo">Mese Successivo >></button>
+                <div class="btn">
+                    <button class="button mese-successivo active">Mese Successivo >></button>
+                    <button class="button mese-successivo hidden">Mese >></button>
+                </div>
             </header>
             <div class="grid-calendario">       <!-- GRIGLIA CALENDARIO -->
-                <div class="riga-giorni-settimana">
+                <div class="riga-giorni-settimana active">
                     <div class="giorno-settimana">Luned&igrave</div>
                     <div class="giorno-settimana">Marted&igrave</div>
                     <div class="giorno-settimana">Mercoled&igrave</div>
@@ -27,6 +33,15 @@
                     <div class="giorno-settimana">Venerd&igrave</div>
                     <div class="giorno-settimana">Sabato</div>
                     <div class="giorno-settimana">Domenica</div>
+                </div>
+                <div class="riga-giorni-settimana" id="hidden">
+                    <div class="giorno-settimana">L</div>
+                    <div class="giorno-settimana">M</div>
+                    <div class="giorno-settimana">M</div>
+                    <div class="giorno-settimana">G</div>
+                    <div class="giorno-settimana">V</div>
+                    <div class="giorno-settimana">S</div>
+                    <div class="giorno-settimana">D</div>
                 </div>
                 <div class="giorni-mese">   <!-- QUA DENTRO VENGONO POSIZIONATI I GIORNI DEL MESE GRAZIE A HANDLEBARS -->
 
