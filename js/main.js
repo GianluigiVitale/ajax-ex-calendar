@@ -5,6 +5,9 @@ $(document).ready(function() {
 
 
     var dataIniziale = moment('01-01-2018', 'DD-MM-YYYY');
+    var limiteIniziale = moment('01-01-2018', 'DD-MM-YYYY');
+    var limiteFinale = moment('30-11-2018', 'DD-MM-YYYY');
+
     stampoGiorniMese(dataIniziale);
     stampaFestivi(dataIniziale);
 
@@ -47,17 +50,12 @@ $(document).ready(function() {
         aggiuntaSpaziGrigliaSettimana(meseDaStampare);
 
         for (var i = 1; i <= giorniMese; i++) {
-            // var giornoDaInserire = {
-            //     giorno: i + ' ' + meseAttuale,
-            //     dataGiorno: giornoX.format('YYYY-MM-DD')
-            // }
             var giornoDaInserire = {
                 giorno: i,
                 dataGiorno: giornoX.format('YYYY-MM-DD')
             }
 
             var templateFinale = templateGiorno(giornoDaInserire); // Stiamo popolando il template con i dati dell'oggetto
-            // $('#giorni-mese').append(templateFinale);
             $('.giorni-mese').append(templateFinale);
             giornoX.add(1, 'day');
         }
@@ -80,7 +78,6 @@ $(document).ready(function() {
                     var giornoFestivo = giorniFestivi[i];
                     var nomeGiornoFestivo = giornoFestivo.name;
                     var dataFestivo = giornoFestivo.date;
-                    // $('#giorni-mese li[data-giorno="' + dataFestivo + '"]').addClass('festivo').append(' - ' + nomeGiornoFestivo);
                     $('.giorno[data-giorno="' + dataFestivo + '"]').addClass('festivo').find('.testo-numero-giorno').text(' - ' + nomeGiornoFestivo);
                 }
             }
@@ -89,23 +86,27 @@ $(document).ready(function() {
 
 
     function controlloMeseNext(meseDaStampare) {        // questa funzione fa si che si ci muova sempre tra il range gennaio 2018 e dicembre 2018 se il mese e' dicembre torna a gennaio
-        var giornoX = meseDaStampare.clone();
-        var meseAttuale = giornoX.format('MMMM');
-        if (meseAttuale == 'dicembre') {
+        $('.mese-precedente').prop('disabled', false);
+        if (meseDaStampare.isSameOrAfter(limiteFinale)) {
             alert('Anno 2019 e successivi non disponibili');
         } else {
             dataIniziale.add(1, 'month');
+            if (meseDaStampare.isSameOrAfter(limiteFinale)) {
+                $('.mese-successivo').prop('disabled', true);
+            }
         }
     }
 
 
     function controlloMesePrevt(meseDaStampare) {       // questa funzione fa si che si ci muova sempre tra il range gennaio 2018 e dicembre 2018 se il mese e' gennaio torna a dicembre
-        var giornoX = meseDaStampare.clone();
-        var meseAttuale = giornoX.format('MMMM');
-        if (meseAttuale == 'gennaio') {
+        $('.mese-successivo').prop('disabled', false);
+        if (meseDaStampare.isSameOrBefore(limiteIniziale)) {
             alert('Anno 2017 e precedenti non disponibili');
         } else {
             dataIniziale.subtract(1, 'month');
+            if (meseDaStampare.isSameOrBefore(limiteIniziale)) {
+                $('.mese-precedente').prop('disabled', true);
+            }
         }
     }
 

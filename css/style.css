@@ -33,6 +33,11 @@ header button {
     margin: 0 100px;
 }
 
+.mese-precedente:disabled, .mese-successivo:disabled {
+    background-color: darkgray;
+    cursor: not-allowed;
+}
+
 header h1 {
     font-size: 70px;
 }
