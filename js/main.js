@@ -63,6 +63,7 @@ $(document).ready(function() {
 
 
     function stampaFestivi(meseDaStampare) {    // questa funzione fa una chiamata AJAX a un API e se c'e' una vacanza in un giorno cambia il colore di quel giorno e dice quale e' la vacanza
+        $('.giorni-mese .giorno:nth-child(7n)').addClass('festivo');    // aggiungo a ogni domenica il colore rosso
         var giornoX = meseDaStampare.clone();
         var meseAttuale = giornoX.month();
         $.ajax({
