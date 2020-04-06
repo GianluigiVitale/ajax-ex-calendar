@@ -64,6 +64,7 @@ header h1 {
     align-items: center;
     width: calc(80vw / 7);
     height: 50px;
+    text-transform: capitalize;
     font-size: 26px;
     font-weight: bold;
     border: 1px solid black;

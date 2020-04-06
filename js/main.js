@@ -1,12 +1,22 @@
 $(document).ready(function() {
 
-    var htmlGiorno = $('#calendar-template').html();
+    // handlebars
+    var htmlGiorno = $('#calendar-template').html();        // handlebars giorni mese
     var templateGiorno = Handlebars.compile(htmlGiorno);
 
+    var htmlGiornoSettimana = $('#giorni-settimana-full').html();        // handlebars giorni settimana intero
+    var templateGiornoSettimana = Handlebars.compile(htmlGiornoSettimana);
+
+    var htmlGiornoSettimanaShort = $('#giorni-settimana-short').html();        // handlebars giorni settimana prima lettera
+    var templateGiornoSettimanaShort = Handlebars.compile(htmlGiornoSettimanaShort);
+    // fine handlebars
+
+    mostraGiorniSettimana()
 
     var dataIniziale = moment('01-01-2018', 'DD-MM-YYYY');
-    var limiteIniziale = moment('01-01-2018', 'DD-MM-YYYY');
-    var limiteFinale = moment('30-11-2018', 'DD-MM-YYYY');
+
+    var limiteIniziale = moment('01-01-2018', 'DD-MM-YYYY');    // inizio limiti API
+    var limiteFinale = moment('30-11-2018', 'DD-MM-YYYY');      // fine limiti API
 
     stampoGiorniMese(dataIniziale);
     stampaFestivi(dataIniziale);
@@ -26,17 +36,9 @@ $(document).ready(function() {
 
 
 
+
     // FUNZIONI USATE
 
-
-
-    function aggiuntaSpaziGrigliaSettimana(meseDaStampare) {        // questa funzione prende il giorno della settimana del primo giorno del mese (meseDaStampare) e crea degli spazi vuoti nella griglia in base al giorno della settimana (es. Domenica uguale 6 spazi vuoti dal Lunedi' al Sabato)
-        var weekDay1stMonth = meseDaStampare.startOf('month').weekday();
-        var divVuoto = '<div class="giorno"></div>';
-        for (var i = 1; i <= weekDay1stMonth; i++) {
-            $('.giorni-mese').append(divVuoto);
-        }
-    }
 
 
     function stampoGiorniMese(meseDaStampare) {         // questa funzione prende dalla variabile meseDaStampare il mese, vede quanti giorni ci sono e stampa a schermo tutti i giorni (handlebars)
@@ -47,7 +49,7 @@ $(document).ready(function() {
         var annoAttuale = giornoX.format('YYYY');
         $('#mese').text(meseAttuale);
         $('#anno').text(annoAttuale);
-        aggiuntaSpaziGrigliaSettimana(meseDaStampare);
+        aggiuntaSpaziGrigliaSettimana(meseDaStampare);   // richiamo funzione per creare gli spazi vuoti
 
         for (var i = 1; i <= giorniMese; i++) {
             var giornoDaInserire = {
@@ -58,6 +60,15 @@ $(document).ready(function() {
             var templateFinale = templateGiorno(giornoDaInserire); // Stiamo popolando il template con i dati dell'oggetto
             $('.giorni-mese').append(templateFinale);
             giornoX.add(1, 'day');
+        }
+    }
+
+
+    function aggiuntaSpaziGrigliaSettimana(meseDaStampare) {        // questa funzione prende il giorno della settimana del primo giorno del mese (meseDaStampare) e crea degli spazi vuoti nella griglia in base al giorno della settimana (es. Domenica uguale 6 spazi vuoti dal Lunedi' al Sabato)
+        var weekDay1stMonth = meseDaStampare.startOf('month').weekday();
+        var divVuoto = '<div class="giorno"></div>';
+        for (var i = 1; i <= weekDay1stMonth; i++) {
+            $('.giorni-mese').append(divVuoto);
         }
     }
 
@@ -111,5 +122,30 @@ $(document).ready(function() {
         }
     }
 
+
+    function mostraGiorniSettimana() {      // questa funzione, grazie a handlebars, mostra i giorni della settimana a schermo in base alla lingua selezionata
+        var arrayGiorniSettimana = moment.weekdays(true);   // questa variabile, grazie a moment, contiene un array con i giorni della settimana della lingua corrente dove il primo giorno e' lunedi'
+
+
+        for (var i = 0; i < arrayGiorniSettimana.length; i++) {
+
+            var oggettoGiornoSettimana = {
+                giornoSettimana: arrayGiorniSettimana[i]
+            }
+
+            var fineGiornoSettimana = templateGiornoSettimana(oggettoGiornoSettimana);
+            $('.riga-giorni-settimana.active').append(fineGiornoSettimana);     // popola i giorni della settimana per intero 'lunedi', 'martedi' ecc.
+        }
+
+        for (var i = 0; i < arrayGiorniSettimana.length; i++) {
+
+            var oggettoGiornoSettimanaShort = {
+                giornoSettimana: arrayGiorniSettimana[i][0]
+            }
+
+            var fineGiornoSettimanaShort = templateGiornoSettimana(oggettoGiornoSettimanaShort);
+            $('.riga-giorni-settimana.short').append(fineGiornoSettimanaShort);     // popola con la prima lettera del giorno della settimana 'L', 'M' ecc.
+        }
+    }
 
 });

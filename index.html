@@ -25,36 +25,32 @@
                 </div>
             </header>
             <div class="grid-calendario">       <!-- GRIGLIA CALENDARIO -->
-                <div class="riga-giorni-settimana active">
-                    <div class="giorno-settimana">Luned&igrave</div>
-                    <div class="giorno-settimana">Marted&igrave</div>
-                    <div class="giorno-settimana">Mercoled&igrave</div>
-                    <div class="giorno-settimana">Gioved&igrave</div>
-                    <div class="giorno-settimana">Venerd&igrave</div>
-                    <div class="giorno-settimana">Sabato</div>
-                    <div class="giorno-settimana">Domenica</div>
+                <div class="riga-giorni-settimana active">      <!-- Qui vengono posizionati i giorni della settimana grazie a handlebars -->
+
                 </div>
-                <div class="riga-giorni-settimana" id="hidden">
-                    <div class="giorno-settimana">L</div>
-                    <div class="giorno-settimana">M</div>
-                    <div class="giorno-settimana">M</div>
-                    <div class="giorno-settimana">G</div>
-                    <div class="giorno-settimana">V</div>
-                    <div class="giorno-settimana">S</div>
-                    <div class="giorno-settimana">D</div>
+                <div class="riga-giorni-settimana short" id="hidden">       <!-- Qui viene posizionata la prima lettera del giorno della settimana grazie a handlebars -->
+
                 </div>
-                <div class="giorni-mese">   <!-- QUA DENTRO VENGONO POSIZIONATI I GIORNI DEL MESE GRAZIE A HANDLEBARS -->
+                <div class="giorni-mese">   <!-- Qua dentro vengono posizionati i giorni del mese grazie a handlebars -->
 
                 </div>
             </div>
         </div>
 
 
-        <script id="calendar-template" type="text/x-handlebars-template">   <!-- TEMPLATE HANDLEBARS PER POPOLARE LA GRIGLIA CON I GIORNI DEL MESE -->
+        <script id="calendar-template" type="text/x-handlebars-template">   <!-- Template handlebars per popolare la griglia con i giorni del mese -->
             <div data-giorno="{{dataGiorno}}" class="giorno">
                 <span class="numero-giorno">{{giorno}}</span>
                 <span class="testo-numero-giorno"></span>
             </div>
+        </script>
+
+        <script id="giorni-settimana-full" type="text/x-handlebars-template">   <!-- Template handlebars per popolare la griglia con i giorni della settimana per intero -->
+            <div class="giorno-settimana">{{giornoSettimana}}</div>
+        </script>
+
+        <script id="giorni-settimana-short" type="text/x-handlebars-template">   <!-- Template handlebars per popolare la griglia con i giorni della settimana solo con la prima lettera -->
+            <div class="giorno-settimana">{{giornoSettimana}}</div>
         </script>
 
         <script src="js/main.js" charset="utf-8"></script>
