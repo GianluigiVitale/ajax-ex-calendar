@@ -30,35 +30,8 @@ $(document).ready(function() {
     function aggiuntaSpaziGrigliaSettimana(meseDaStampare) {        // questa funzione prende il giorno della settimana del primo giorno del mese (meseDaStampare) e crea degli spazi vuoti nella griglia in base al giorno della settimana (es. Domenica uguale 6 spazi vuoti dal Lunedi' al Sabato)
         var weekDay1stMonth = meseDaStampare.startOf('month').weekday();
         var divVuoto = '<div class="giorno"></div>';
-        switch (weekDay1stMonth) {
-            case 1:
-                $('.giorni-mese').append(divVuoto);
-                break;
-            case 2:
-                for (var i = 1; i <= 2; i++) {
-                    $('.giorni-mese').append(divVuoto);
-                }
-                break;
-            case 3:
-                for (var i = 1; i <= 3; i++) {
-                    $('.giorni-mese').append(divVuoto);
-                }
-                break;
-            case 4:
-                for (var i = 1; i <= 4; i++) {
-                    $('.giorni-mese').append(divVuoto);
-                }
-                break;
-            case 5:
-                for (var i = 1; i <= 5; i++) {
-                    $('.giorni-mese').append(divVuoto);
-                }
-                break;
-            case 6:
-                for (var i = 1; i <= 6; i++) {
-                    $('.giorni-mese').append(divVuoto);
-                }
-                break;
+        for (var i = 1; i <= weekDay1stMonth; i++) {
+            $('.giorni-mese').append(divVuoto);
         }
     }
 
